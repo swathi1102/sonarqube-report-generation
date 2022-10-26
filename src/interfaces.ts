@@ -9,7 +9,7 @@ export interface SonarIssue {
   severity: 'BLOCKER' | 'CRITICAL' | 'MAJOR' | 'MINOR' | 'INFO';
 }
 
-export interface TryviReport {
+export interface TrivyReport {
   SchemaVersion: number;
   ArtifactName: string;
   ArtifactType: string;
@@ -39,7 +39,7 @@ export interface TryviReport {
       Description: string;
       Severity: 'HIGH' | 'LOW' | 'MEDIUM' | 'CRITICAL';
 
-      References: string[];
+      References?: string[];
       PublishedDate: string;
       LastModifiedDate: string;
     }>;
@@ -54,7 +54,106 @@ export interface TryviReport {
       Resolution: string;
       Severity: 'HIGH' | 'LOW' | 'MEDIUM' | 'CRITICAL';
       PrimaryURL: string;
-      References: string[];
+      References?: string[];
     }>;
   }>;
+}
+
+
+export interface SemgrepReport {
+  errors:  any[];
+  paths:   Paths;
+  results: Result[];
+  version: string;
+}
+
+export interface Paths {
+  _comment: string;
+  scanned:  string[];
+}
+
+export interface Result {
+  check_id: string;
+  path:     string;
+  start:    number;
+  end:      number;
+  extra:    Extra;
+}
+
+export interface ResultEnd {
+  line: number;
+  col:  number;
+}
+
+export interface Extra {
+  message:  string;
+  metavars: Metavars;
+  metadata: Metadata;
+  severity: 'INFO' | 'WARNING' | 'ERROR' ;
+  fix?:     string;
+  lines:    string;
+}
+
+export interface Metadata {
+  cwe:                string;
+  owasp:              string;
+  "source-rule-url"?: string;
+  references?:        string[];
+}
+
+export interface Metavars {
+  $CIPHER?:   Cipher;
+  $Y?:        Cookie;
+  $X?:        Cookie;
+  $RUNTIME?:  Cookie;
+  $W?:        Cookie;
+  $SQL?:      Cookie;
+  $CTX?:      Cookie;
+  $METHOD?:   Cipher;
+  $COOKIE?:   Cookie;
+  $RESPONSE?: Cookie;
+  $RESP?:     Cookie;
+}
+
+export interface Cipher {
+  start:            CIPHEREnd;
+  end:              CIPHEREnd;
+  abstract_content: string;
+  unique_id:        CIPHERUniqueID;
+}
+
+export interface CIPHEREnd {
+  line:   number;
+  col:    number;
+  offset: number;
+}
+
+export interface CIPHERUniqueID {
+  type:   string;
+  md5sum: string;
+}
+
+export interface Cookie {
+  start:            CIPHEREnd;
+  end:              CIPHEREnd;
+  abstract_content: string;
+  unique_id:        COOKIEUniqueID;
+}
+
+export interface COOKIEUniqueID {
+  type:    string;
+  value?:  string;
+  kind?:   string;
+  sid?:    number;
+  md5sum?: string;
+}
+
+export enum Type {
+  AST = "AST",
+  ID = "id",
+}
+
+export enum Kind {
+  Local = "Local",
+  Param = "Param",
 }

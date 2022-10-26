@@ -1,70 +1,423 @@
 {
   "SchemaVersion": 2,
-  "ArtifactName": ".",
-  "ArtifactType": "filesystem",
+  "ArtifactName": "sonarqube",
+  "ArtifactType": "container_image",
   "Metadata": {
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.15.6"
+    },
+    "ImageID": "sha256:e772d58ff6ae904f7c12fb3c4dc52bf9c96ffa598d78030859d2d40545bd09b0",
+    "DiffIDs": [
+      "sha256:34d5ebaa5410d2ab4154bbd7c3c99c385ec509eb9c1d03d5486aff01bbd618c5",
+      "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c",
+      "sha256:844ae8ef7928a1bb3029819b7fb23b5e493b45dd04bff467f5d1858c8e347c81"
+    ],
+    "RepoTags": [
+      "sonarqube:latest"
+    ],
+    "RepoDigests": [
+      "sonarqube@sha256:e93f85a50ccca9cf156db91bd9b7bfd30598cc041e7f13caf40bb6b3c417138c"
+    ],
     "ImageConfig": {
-      "architecture": "",
-      "created": "0001-01-01T00:00:00Z",
-      "os": "",
+      "architecture": "amd64",
+      "container": "df90d4d8beacdca0a8848dd1e27f951a5bcd77692a194151dbd1904dee6a144e",
+      "created": "2022-10-17T22:20:38.74751577Z",
+      "docker_version": "20.10.12",
+      "history": [
+        {
+          "created": "2022-08-09T17:20:00.969473443Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:f77e3f51f020890d22997e6c2ca98968b75b8bc8c463341a2010ff0655d4c88f in / "
+        },
+        {
+          "created": "2022-08-09T17:20:01.082908181Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-07T04:08:05.572869174Z",
+          "created_by": "/bin/sh -c #(nop)  ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:18.592928361Z",
+          "created_by": "/bin/sh -c #(nop)  ARG SONARQUBE_VERSION=9.7.0.61563",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:18.690945949Z",
+          "created_by": "/bin/sh -c #(nop)  ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.7.0.61563.zip",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:18.798053095Z",
+          "created_by": "/bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin SONARQUBE_HOME=/opt/sonarqube SONAR_VERSION=9.7.0.61563 SQ_DATA_DIR=/opt/sonarqube/data SQ_EXTENSIONS_DIR=/opt/sonarqube/extensions SQ_LOGS_DIR=/opt/sonarqube/logs SQ_TEMP_DIR=/opt/sonarqube/temp",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:36.8553915Z",
+          "created_by": "|2 SONARQUBE_VERSION=9.7.0.61563 SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.7.0.61563.zip /bin/sh -c set -eux;     addgroup -S -g 1000 sonarqube;     adduser -S -D -u 1000 -G sonarqube sonarqube;     apk add --no-cache --virtual build-dependencies gnupg unzip curl;     apk add --no-cache bash su-exec ttf-dejavu openjdk11-jre;     echo \"networkaddress.cache.ttl=5\" \u003e\u003e \"${JAVA_HOME}/conf/security/java.security\";     sed --in-place --expression=\"s?securerandom.source=file:/dev/random?securerandom.source=file:/dev/urandom?g\" \"${JAVA_HOME}/conf/security/java.security\";     for server in $(shuf -e hkps://keys.openpgp.org                             hkps://keyserver.ubuntu.com) ; do         gpg --batch --keyserver \"${server}\" --recv-keys 679F1EE92B19609DE816FDE81DB198F93525EC1A \u0026\u0026 break || : ;     done;     mkdir --parents /opt;     cd /opt;     curl --fail --location --output sonarqube.zip --silent --show-error \"${SONARQUBE_ZIP_URL}\";     curl --fail --location --output sonarqube.zip.asc --silent --show-error \"${SONARQUBE_ZIP_URL}.asc\";     gpg --batch --verify sonarqube.zip.asc sonarqube.zip;     unzip -q sonarqube.zip;     mv \"sonarqube-${SONARQUBE_VERSION}\" sonarqube;     rm sonarqube.zip*;     rm -rf ${SONARQUBE_HOME}/bin/*;     chown -R sonarqube:sonarqube ${SONARQUBE_HOME};     chmod -R 777 \"${SQ_DATA_DIR}\" \"${SQ_EXTENSIONS_DIR}\" \"${SQ_LOGS_DIR}\" \"${SQ_TEMP_DIR}\";     apk del --purge build-dependencies;"
+        },
+        {
+          "created": "2022-10-17T22:20:38.22356775Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=sonarqube:sonarqubemulti:66701f646ad2f21287c063721ad66eabe0c3f39a3371b70504abf154fe36a694 in /opt/sonarqube/bin/ "
+        },
+        {
+          "created": "2022-10-17T22:20:38.335760114Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /opt/sonarqube",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:38.446322382Z",
+          "created_by": "/bin/sh -c #(nop)  EXPOSE 9000",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:38.546211Z",
+          "created_by": "/bin/sh -c #(nop)  STOPSIGNAL SIGINT",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:38.645388856Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/opt/sonarqube/bin/run.sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2022-10-17T22:20:38.74751577Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/opt/sonarqube/bin/sonar.sh\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
       "rootfs": {
-        "type": "",
-        "diff_ids": null
+        "type": "layers",
+        "diff_ids": [
+          "sha256:34d5ebaa5410d2ab4154bbd7c3c99c385ec509eb9c1d03d5486aff01bbd618c5",
+          "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c",
+          "sha256:844ae8ef7928a1bb3029819b7fb23b5e493b45dd04bff467f5d1858c8e347c81"
+        ]
       },
-      "config": {}
+      "config": {
+        "Cmd": [
+          "/opt/sonarqube/bin/sonar.sh"
+        ],
+        "Entrypoint": [
+          "/opt/sonarqube/bin/run.sh"
+        ],
+        "Env": [
+          "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "LANG=en_US.UTF-8",
+          "LANGUAGE=en_US:en",
+          "LC_ALL=en_US.UTF-8",
+          "JAVA_HOME=/usr/lib/jvm/java-11-openjdk",
+          "SONARQUBE_HOME=/opt/sonarqube",
+          "SONAR_VERSION=9.7.0.61563",
+          "SQ_DATA_DIR=/opt/sonarqube/data",
+          "SQ_EXTENSIONS_DIR=/opt/sonarqube/extensions",
+          "SQ_LOGS_DIR=/opt/sonarqube/logs",
+          "SQ_TEMP_DIR=/opt/sonarqube/temp"
+        ],
+        "Image": "sha256:fc05cda69ec9aeba5588fce11ca6abded7a304a2e7f5fb5f489153d0706abb48",
+        "WorkingDir": "/opt/sonarqube",
+        "ExposedPorts": {
+          "9000/tcp": {}
+        },
+        "StopSignal": "SIGINT"
+      }
     }
   },
   "Results": [
     {
-      "Target": "node_modules/adal-node/package-lock.json",
+      "Target": "sonarqube (alpine 3.15.6)",
+      "Class": "os-pkgs",
+      "Type": "alpine"
+    },
+    {
+      "Target": "Java",
       "Class": "lang-pkgs",
-      "Type": "npm",
+      "Type": "jar",
       "Vulnerabilities": [
         {
-          "VulnerabilityID": "CVE-2020-15366",
-          "PkgName": "ajv",
-          "InstalledVersion": "5.3.0",
-          "FixedVersion": "6.12.3",
-          "Layer": {},
+          "VulnerabilityID": "CVE-2022-42003",
+          "PkgName": "com.fasterxml.jackson.core:jackson-databind",
+          "PkgPath": "opt/sonarqube/lib/sonar-application-9.7.0.61563.jar",
+          "InstalledVersion": "2.13.3",
+          "FixedVersion": "2.13.4.1",
+          "Layer": {
+            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
+            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
+          },
           "SeveritySource": "ghsa",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-15366",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42003",
           "DataSource": {
             "ID": "ghsa",
-            "Name": "GitHub Security Advisory Npm",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Title": "nodejs-ajv: prototype pollution via crafted JSON schema in ajv.validate function",
-          "Description": "An issue was discovered in ajv.validate() in Ajv (aka Another JSON Schema Validator) 6.12.2. A carefully crafted JSON schema could be provided that allows execution of other code by prototype pollution. (While untrusted schemas are recommended against, the worst case of an untrusted schema should be a denial of service, not execution of code.)",
-          "Severity": "MEDIUM",
+          "Title": "jackson-databind: deep wrapper array nesting wrt UNWRAP_SINGLE_VALUE_ARRAYS",
+          "Description": "In FasterXML jackson-databind before 2.14.0-rc1, resource exhaustion can occur because of a lack of a check in primitive value deserializers to avoid deep wrapper array nesting, when the UNWRAP_SINGLE_VALUE_ARRAYS feature is enabled. Additional fix version in 2.13.4.1 and 2.12.17.1",
+          "Severity": "HIGH",
           "CweIDs": [
-            "CWE-20"
+            "CWE-502"
           ],
           "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
             "nvd": {
-              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
-              "V2Score": 6.8,
-              "V3Score": 5.6
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
-              "V3Score": 5.6
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             }
           },
           "References": [
-            "https://access.redhat.com/security/cve/CVE-2020-15366",
-            "https://github.com/advisories/GHSA-v88g-cgmw-v5xw",
-            "https://github.com/ajv-validator/ajv/commit/65b2f7d76b190ac63a0d4e9154c712d7aa37049f",
-            "https://github.com/ajv-validator/ajv/releases/tag/v6.12.3",
-            "https://github.com/ajv-validator/ajv/tags",
-            "https://hackerone.com/bugs?subject=user\u0026report_id=894259",
-            "https://linux.oracle.com/cve/CVE-2020-15366.html",
-            "https://linux.oracle.com/errata/ELSA-2021-0551.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2020-15366",
-            "https://snyk.io/vuln/SNYK-JS-AJV-584908"
+            "https://access.redhat.com/security/cve/CVE-2022-42003",
+            "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=51020",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42003",
+            "https://github.com/FasterXML/jackson-databind/blob/2.13/release-notes/VERSION-2.x",
+            "https://github.com/FasterXML/jackson-databind/commit/d78d00ee7b5245b93103fef3187f70543d67ca33",
+            "https://github.com/FasterXML/jackson-databind/commit/d78d00ee7b5245b93103fef3187f70543d67ca33 (jackson-databind-2.14.0-rc1)",
+            "https://github.com/FasterXML/jackson-databind/issues/3590",
+            "https://github.com/advisories/GHSA-jjjh-jjxp-wpff",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-42003"
           ],
-          "PublishedDate": "2020-07-15T20:15:00Z",
-          "LastModifiedDate": "2021-07-21T11:39:00Z"
+          "PublishedDate": "2022-10-02T05:15:00Z",
+          "LastModifiedDate": "2022-10-18T18:00:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-42004",
+          "PkgName": "com.fasterxml.jackson.core:jackson-databind",
+          "PkgPath": "opt/sonarqube/lib/sonar-application-9.7.0.61563.jar",
+          "InstalledVersion": "2.13.3",
+          "FixedVersion": "2.13.4",
+          "Layer": {
+            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
+            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42004",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "jackson-databind: use of deeply nested arrays",
+          "Description": "In FasterXML jackson-databind before 2.13.4, resource exhaustion can occur because of a lack of a check in BeanDeserializer._deserializeFromArray to prevent use of deeply nested arrays. An application is vulnerable only with certain customized choices for deserialization.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-502"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2022-42004",
+            "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50490",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42004",
+            "https://github.com/FasterXML/jackson-databind/commit/063183589218fec19a9293ed2f17ec53ea80ba88",
+            "https://github.com/FasterXML/jackson-databind/commit/063183589218fec19a9293ed2f17ec53ea80ba88 (jackson-databind-2.13.4)",
+            "https://github.com/FasterXML/jackson-databind/issues/3582",
+            "https://github.com/advisories/GHSA-rgv9-q543-rqg4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-42004"
+          ],
+          "PublishedDate": "2022-10-02T05:15:00Z",
+          "LastModifiedDate": "2022-10-19T16:24:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-37136",
+          "PkgName": "io.netty:netty-codec",
+          "PkgPath": "opt/sonarqube/elasticsearch/modules/transport-netty4/netty-codec-4.1.66.Final.jar",
+          "InstalledVersion": "4.1.66.Final",
+          "FixedVersion": "4.1.68.Final",
+          "Layer": {
+            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
+            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-37136",
+          "DataSource": {
+            "ID": "glad",
+            "Name": "GitLab Advisory Database Community",
+            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+          },
+          "Title": "netty-codec: Bzip2Decoder doesn't allow setting size restrictions for decompressed data",
+          "Description": "The Bzip2 decompression decoder function doesn't allow setting size restrictions on the decompressed output data (which affects the allocation size used during decompression). All users of Bzip2Decoder are affected. The malicious input can trigger an OOME and so a DoS attack",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2021-37136",
+            "https://github.com/advisories/GHSA-grg4-wf29-r9vv",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L294",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L305",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L80",
+            "https://github.com/netty/netty/commit/41d3d61a61608f2223bb364955ab2045dd5e4020",
+            "https://github.com/netty/netty/security/advisories/GHSA-grg4-wf29-r9vv",
+            "https://lists.apache.org/thread.html/r06a145c9bd41a7344da242cef07977b24abe3349161ede948e30913d@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r5406eaf3b07577d233b9f07cfc8f26e28369e6bab5edfcab41f28abb@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r5e05eba32476c580412f9fbdfc9b8782d5b40558018ac4ac07192a04@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r75490c61c2cb7b6ae2c81238fd52ae13636c60435abcd732d41531a0@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/rd262f59b1586a108e320e5c966feeafbb1b8cdc96965debc7cc10b16@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/rfb2bf8597e53364ccab212fbcbb2a4e9f0a9e1429b1dc08023c6868e@%3Cdev.tinkerpop.apache.org%3E",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-37136",
+            "https://security.netapp.com/advisory/ntap-20220210-0012/",
+            "https://www.oracle.com/security-alerts/cpuapr2022.html",
+            "https://www.oracle.com/security-alerts/cpujan2022.html",
+            "https://www.oracle.com/security-alerts/cpujul2022.html"
+          ],
+          "PublishedDate": "2021-10-19T15:15:00Z",
+          "LastModifiedDate": "2022-10-05T13:43:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-37137",
+          "PkgName": "io.netty:netty-codec",
+          "PkgPath": "opt/sonarqube/elasticsearch/modules/transport-netty4/netty-codec-4.1.66.Final.jar",
+          "InstalledVersion": "4.1.66.Final",
+          "FixedVersion": "4.1.68.Final",
+          "Layer": {
+            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
+            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-37137",
+          "DataSource": {
+            "ID": "glad",
+            "Name": "GitLab Advisory Database Community",
+            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+          },
+          "Title": "netty-codec: SnappyFrameDecoder doesn't restrict chunk length and may buffer skippable chunks in an unnecessary way",
+          "Description": "The Snappy frame decoder function doesn't restrict the chunk length which may lead to excessive memory usage. Beside this it also may buffer reserved skippable chunks until the whole chunk was received which may lead to excessive memory usage as well. This vulnerability can be triggered by supplying malicious input that decompresses to a very big size (via a network stream or a file) or by sending a huge skippable chunk.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2021-37137",
+            "https://github.com/advisories/GHSA-9vjp-v76f-g363",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L171",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L185",
+            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L79",
+            "https://github.com/netty/netty/commit/6da4956b31023ae967451e1d94ff51a746a9194f",
+            "https://github.com/netty/netty/security/advisories/GHSA-9vjp-v76f-g363",
+            "https://github.com/netty/netty/security/advisories/GHSA-grg4-wf29-r9vv",
+            "https://lists.apache.org/thread.html/r06a145c9bd41a7344da242cef07977b24abe3349161ede948e30913d@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r5406eaf3b07577d233b9f07cfc8f26e28369e6bab5edfcab41f28abb@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r5e05eba32476c580412f9fbdfc9b8782d5b40558018ac4ac07192a04@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/r75490c61c2cb7b6ae2c81238fd52ae13636c60435abcd732d41531a0@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/rd262f59b1586a108e320e5c966feeafbb1b8cdc96965debc7cc10b16@%3Ccommits.druid.apache.org%3E",
+            "https://lists.apache.org/thread.html/rfb2bf8597e53364ccab212fbcbb2a4e9f0a9e1429b1dc08023c6868e@%3Cdev.tinkerpop.apache.org%3E",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-37137",
+            "https://security.netapp.com/advisory/ntap-20220210-0012/",
+            "https://www.oracle.com/security-alerts/cpuapr2022.html",
+            "https://www.oracle.com/security-alerts/cpujan2022.html",
+            "https://www.oracle.com/security-alerts/cpujul2022.html"
+          ],
+          "PublishedDate": "2021-10-19T15:15:00Z",
+          "LastModifiedDate": "2022-10-05T17:58:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-25857",
+          "PkgName": "org.yaml:snakeyaml",
+          "PkgPath": "opt/sonarqube/elasticsearch/lib/snakeyaml-1.26.jar",
+          "InstalledVersion": "1.26",
+          "FixedVersion": "1.31",
+          "Layer": {
+            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
+            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-25857",
+          "DataSource": {
+            "ID": "glad",
+            "Name": "GitLab Advisory Database Community",
+            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+          },
+          "Title": "snakeyaml: Denial of Service due to missing nested depth limitation for collections",
+          "Description": "The package org.yaml:snakeyaml from 0 and before 1.31 are vulnerable to Denial of Service (DoS) due missing to nested depth limitation for collections.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2022:6820",
+            "https://access.redhat.com/hydra/rest/securitydata/cve/CVE-2022-25857.json",
+            "https://access.redhat.com/security/cve/CVE-2022-25857",
+            "https://bitbucket.org/snakeyaml/snakeyaml/commits/fc300780da21f4bb92c148bc90257201220cf174",
+            "https://bitbucket.org/snakeyaml/snakeyaml/issues/525",
+            "https://bugzilla.redhat.com/2126789",
+            "https://errata.almalinux.org/8/ALSA-2022-6820.html",
+            "https://github.com/advisories/GHSA-3mc7-4q67-w48m",
+            "https://github.com/snakeyaml/snakeyaml/commit/fc300780da21f4bb92c148bc90257201220cf174",
+            "https://linux.oracle.com/cve/CVE-2022-25857.html",
+            "https://linux.oracle.com/errata/ELSA-2022-6820.html",
+            "https://lists.debian.org/debian-lts-announce/2022/10/msg00001.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-25857",
+            "https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-2806360"
+          ],
+          "PublishedDate": "2022-08-30T05:15:00Z",
+          "LastModifiedDate": "2022-10-06T15:30:00Z"
         }
       ]
     }
