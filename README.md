@@ -38,5 +38,9 @@ sonarqube-report-generation -f semgrep-report.json -o ./my-semgrep-to-sonarqube-
       -Dsonar.sources=.
       -Dsonar.externalIssuesReportPaths=./my-trivy-to-sonarqube-report.json, ./my-semgrep-to-sonarqube-report.json
 
-
 ```
+
+
+
+## NOTE: 
+This project was forked and improved from https://github.com/Blynskyniki/trivy-to-sonarqube . 
