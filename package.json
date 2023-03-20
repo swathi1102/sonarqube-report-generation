@@ -1,15 +1,16 @@
 {
   "name": "sonarqube-report-generation",
   "version": "1.0.2",
-  "description": "Generates a report for Sonarqube (generic issue import format) based on report trivy.",
-  "homepage": "https://github.com/Blynskyniki/trivy-to-sonarqube#readme",
+
+  "description": "Generates a report for Sonarqube (generic issue import format) based on report trivy and semgrep.",
+  "homepage": "https://github.com/swathi1102/sonarqube-report-generation#readme",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "trivy-to-sonarqube": "./dist/bin/index.js"
+    "sonarqube-report-generation": "./dist/bin/index.js"
   },
   "scripts": {
-    "prepublish": " npm run build && npm version patch -m \"Upgrade to %s \" && chmod +x dist/bin/index.js    ",
+    "prepublish": " npm run build && chmod +x dist/bin/index.js    ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && ./node_modules/.bin/tsc ",
     "lint": "eslint src/ --ext .ts",
@@ -29,6 +30,7 @@
   },
   "keywords": [
     "trivy",
+    "semgrep",
     "sonarqube",
     "report",
     "generic issue"
