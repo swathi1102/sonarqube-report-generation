@@ -1,6 +1,6 @@
 {
   "name": "sonarqube-report-generation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates a report for Sonarqube (generic issue import format) based on report trivy.",
   "homepage": "https://github.com/Blynskyniki/trivy-to-sonarqube#readme",
   "main": "./dist/index.js",
