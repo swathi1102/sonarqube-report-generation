@@ -9,7 +9,7 @@ export interface SonarIssue {
   severity: 'BLOCKER' | 'CRITICAL' | 'MAJOR' | 'MINOR' | 'INFO';
 }
 
-export interface TrivyReport {
+export interface TryviReport {
   SchemaVersion: number;
   ArtifactName: string;
   ArtifactType: string;

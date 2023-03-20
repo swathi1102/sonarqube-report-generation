@@ -1,266 +1,320 @@
 {
   "SchemaVersion": 2,
-  "ArtifactName": "sonarqube",
-  "ArtifactType": "container_image",
+  "ArtifactName": ".",
+  "ArtifactType": "filesystem",
   "Metadata": {
-    "OS": {
-      "Family": "alpine",
-      "Name": "3.15.6"
-    },
-    "ImageID": "sha256:e772d58ff6ae904f7c12fb3c4dc52bf9c96ffa598d78030859d2d40545bd09b0",
-    "DiffIDs": [
-      "sha256:34d5ebaa5410d2ab4154bbd7c3c99c385ec509eb9c1d03d5486aff01bbd618c5",
-      "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c",
-      "sha256:844ae8ef7928a1bb3029819b7fb23b5e493b45dd04bff467f5d1858c8e347c81"
-    ],
-    "RepoTags": [
-      "sonarqube:latest"
-    ],
-    "RepoDigests": [
-      "sonarqube@sha256:e93f85a50ccca9cf156db91bd9b7bfd30598cc041e7f13caf40bb6b3c417138c"
-    ],
     "ImageConfig": {
-      "architecture": "amd64",
-      "container": "df90d4d8beacdca0a8848dd1e27f951a5bcd77692a194151dbd1904dee6a144e",
-      "created": "2022-10-17T22:20:38.74751577Z",
-      "docker_version": "20.10.12",
-      "history": [
-        {
-          "created": "2022-08-09T17:20:00.969473443Z",
-          "created_by": "/bin/sh -c #(nop) ADD file:f77e3f51f020890d22997e6c2ca98968b75b8bc8c463341a2010ff0655d4c88f in / "
-        },
-        {
-          "created": "2022-08-09T17:20:01.082908181Z",
-          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-07T04:08:05.572869174Z",
-          "created_by": "/bin/sh -c #(nop)  ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:18.592928361Z",
-          "created_by": "/bin/sh -c #(nop)  ARG SONARQUBE_VERSION=9.7.0.61563",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:18.690945949Z",
-          "created_by": "/bin/sh -c #(nop)  ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.7.0.61563.zip",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:18.798053095Z",
-          "created_by": "/bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin SONARQUBE_HOME=/opt/sonarqube SONAR_VERSION=9.7.0.61563 SQ_DATA_DIR=/opt/sonarqube/data SQ_EXTENSIONS_DIR=/opt/sonarqube/extensions SQ_LOGS_DIR=/opt/sonarqube/logs SQ_TEMP_DIR=/opt/sonarqube/temp",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:36.8553915Z",
-          "created_by": "|2 SONARQUBE_VERSION=9.7.0.61563 SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.7.0.61563.zip /bin/sh -c set -eux;     addgroup -S -g 1000 sonarqube;     adduser -S -D -u 1000 -G sonarqube sonarqube;     apk add --no-cache --virtual build-dependencies gnupg unzip curl;     apk add --no-cache bash su-exec ttf-dejavu openjdk11-jre;     echo \"networkaddress.cache.ttl=5\" \u003e\u003e \"${JAVA_HOME}/conf/security/java.security\";     sed --in-place --expression=\"s?securerandom.source=file:/dev/random?securerandom.source=file:/dev/urandom?g\" \"${JAVA_HOME}/conf/security/java.security\";     for server in $(shuf -e hkps://keys.openpgp.org                             hkps://keyserver.ubuntu.com) ; do         gpg --batch --keyserver \"${server}\" --recv-keys 679F1EE92B19609DE816FDE81DB198F93525EC1A \u0026\u0026 break || : ;     done;     mkdir --parents /opt;     cd /opt;     curl --fail --location --output sonarqube.zip --silent --show-error \"${SONARQUBE_ZIP_URL}\";     curl --fail --location --output sonarqube.zip.asc --silent --show-error \"${SONARQUBE_ZIP_URL}.asc\";     gpg --batch --verify sonarqube.zip.asc sonarqube.zip;     unzip -q sonarqube.zip;     mv \"sonarqube-${SONARQUBE_VERSION}\" sonarqube;     rm sonarqube.zip*;     rm -rf ${SONARQUBE_HOME}/bin/*;     chown -R sonarqube:sonarqube ${SONARQUBE_HOME};     chmod -R 777 \"${SQ_DATA_DIR}\" \"${SQ_EXTENSIONS_DIR}\" \"${SQ_LOGS_DIR}\" \"${SQ_TEMP_DIR}\";     apk del --purge build-dependencies;"
-        },
-        {
-          "created": "2022-10-17T22:20:38.22356775Z",
-          "created_by": "/bin/sh -c #(nop) COPY --chown=sonarqube:sonarqubemulti:66701f646ad2f21287c063721ad66eabe0c3f39a3371b70504abf154fe36a694 in /opt/sonarqube/bin/ "
-        },
-        {
-          "created": "2022-10-17T22:20:38.335760114Z",
-          "created_by": "/bin/sh -c #(nop) WORKDIR /opt/sonarqube",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:38.446322382Z",
-          "created_by": "/bin/sh -c #(nop)  EXPOSE 9000",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:38.546211Z",
-          "created_by": "/bin/sh -c #(nop)  STOPSIGNAL SIGINT",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:38.645388856Z",
-          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/opt/sonarqube/bin/run.sh\"]",
-          "empty_layer": true
-        },
-        {
-          "created": "2022-10-17T22:20:38.74751577Z",
-          "created_by": "/bin/sh -c #(nop)  CMD [\"/opt/sonarqube/bin/sonar.sh\"]",
-          "empty_layer": true
-        }
-      ],
-      "os": "linux",
+      "architecture": "",
+      "created": "0001-01-01T00:00:00Z",
+      "os": "",
       "rootfs": {
-        "type": "layers",
-        "diff_ids": [
-          "sha256:34d5ebaa5410d2ab4154bbd7c3c99c385ec509eb9c1d03d5486aff01bbd618c5",
-          "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c",
-          "sha256:844ae8ef7928a1bb3029819b7fb23b5e493b45dd04bff467f5d1858c8e347c81"
-        ]
+        "type": "",
+        "diff_ids": null
       },
-      "config": {
-        "Cmd": [
-          "/opt/sonarqube/bin/sonar.sh"
-        ],
-        "Entrypoint": [
-          "/opt/sonarqube/bin/run.sh"
-        ],
-        "Env": [
-          "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-          "LANG=en_US.UTF-8",
-          "LANGUAGE=en_US:en",
-          "LC_ALL=en_US.UTF-8",
-          "JAVA_HOME=/usr/lib/jvm/java-11-openjdk",
-          "SONARQUBE_HOME=/opt/sonarqube",
-          "SONAR_VERSION=9.7.0.61563",
-          "SQ_DATA_DIR=/opt/sonarqube/data",
-          "SQ_EXTENSIONS_DIR=/opt/sonarqube/extensions",
-          "SQ_LOGS_DIR=/opt/sonarqube/logs",
-          "SQ_TEMP_DIR=/opt/sonarqube/temp"
-        ],
-        "Image": "sha256:fc05cda69ec9aeba5588fce11ca6abded7a304a2e7f5fb5f489153d0706abb48",
-        "WorkingDir": "/opt/sonarqube",
-        "ExposedPorts": {
-          "9000/tcp": {}
-        },
-        "StopSignal": "SIGINT"
-      }
+      "config": {}
     }
   },
   "Results": [
     {
-      "Target": "sonarqube (alpine 3.15.6)",
-      "Class": "os-pkgs",
-      "Type": "alpine"
-    },
-    {
-      "Target": "Java",
+      "Target": "Gemfile.lock",
       "Class": "lang-pkgs",
-      "Type": "jar",
+      "Type": "bundler",
       "Vulnerabilities": [
         {
-          "VulnerabilityID": "CVE-2022-42003",
-          "PkgName": "com.fasterxml.jackson.core:jackson-databind",
-          "PkgPath": "opt/sonarqube/lib/sonar-application-9.7.0.61563.jar",
-          "InstalledVersion": "2.13.3",
-          "FixedVersion": "2.13.4.1",
-          "Layer": {
-            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
-            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
-          },
-          "SeveritySource": "ghsa",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42003",
+          "VulnerabilityID": "CVE-2015-7581",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 4.2.5, \u003e= 4.2.5.1, ~\u003e 4.1.14, \u003e= 4.1.14.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2015-7581",
           "DataSource": {
-            "ID": "ghsa",
-            "Name": "GitHub Security Advisory Maven",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
           },
-          "Title": "jackson-databind: deep wrapper array nesting wrt UNWRAP_SINGLE_VALUE_ARRAYS",
-          "Description": "In FasterXML jackson-databind before 2.14.0-rc1, resource exhaustion can occur because of a lack of a check in primitive value deserializers to avoid deep wrapper array nesting, when the UNWRAP_SINGLE_VALUE_ARRAYS feature is enabled. Additional fix version in 2.13.4.1 and 2.12.17.1",
+          "Title": "rubygem-actionpack: Object leak vulnerability for wildcard controller routes in Action Pack",
+          "Description": "actionpack/lib/action_dispatch/routing/route_set.rb in Action Pack in Ruby on Rails 4.x before 4.2.5.1 and 5.x before 5.0.0.beta1.1 allows remote attackers to cause a denial of service (superfluous caching and memory consumption) by leveraging an application's use of a wildcard controller route.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-399"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "V2Score": 4.3
+            }
+          },
+          "References": [
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178043.html",
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178067.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00053.html",
+            "http://lists.opensuse.org/opensuse-updates/2016-02/msg00043.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-0296.html",
+            "http://weblog.rubyonrails.org/2016/1/25/Rails-5-0-0-beta1-1-4-2-5-1-4-1-14-1-3-2-22-1-and-rails-html-sanitizer-1-0-3-have-been-released/",
+            "http://www.debian.org/security/2016/dsa-3464",
+            "http://www.openwall.com/lists/oss-security/2016/01/25/16",
+            "http://www.securityfocus.com/bid/81677",
+            "http://www.securitytracker.com/id/1034816",
+            "https://access.redhat.com/security/cve/CVE-2015-7581",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7581",
+            "https://github.com/advisories/GHSA-9h6g-gp95-x3q5",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/dthJ5wL69JE/YzPnFelbFQAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/dthJ5wL69JE",
+            "https://groups.google.com/forum/message/raw?msg=ruby-security-ann/dthJ5wL69JE/IdvCimtZEgAJ",
+            "https://marc.info/?l=oss-security\u0026m=145375099828815\u0026w=2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2015-7581"
+          ],
+          "PublishedDate": "2016-02-16T02:59:00Z",
+          "LastModifiedDate": "2019-08-08T15:43:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2016-0751",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "\u003e= 5.0.0.beta1.1, ~\u003e 4.2.5, \u003e= 4.2.5.1, ~\u003e 4.1.14, \u003e= 4.1.14.1, ~\u003e 3.2.22.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-0751",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-actionpack: possible object leak and denial of service attack in Action Pack",
+          "Description": "actionpack/lib/action_dispatch/http/mime_type.rb in Action Pack in Ruby on Rails before 3.2.22.1, 4.0.x and 4.1.x before 4.1.14.1, 4.2.x before 4.2.5.1, and 5.x before 5.0.0.beta1.1 does not properly restrict use of the MIME type cache, which allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP Accept header.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-399"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "V2Score": 4.3
+            }
+          },
+          "References": [
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178043.html",
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178067.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00053.html",
+            "http://lists.opensuse.org/opensuse-updates/2016-02/msg00034.html",
+            "http://lists.opensuse.org/opensuse-updates/2016-02/msg00043.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-0296.html",
+            "http://weblog.rubyonrails.org/2016/1/25/Rails-5-0-0-beta1-1-4-2-5-1-4-1-14-1-3-2-22-1-and-rails-html-sanitizer-1-0-3-have-been-released/",
+            "http://www.debian.org/security/2016/dsa-3464",
+            "http://www.openwall.com/lists/oss-security/2016/01/25/9",
+            "http://www.securityfocus.com/bid/81800",
+            "http://www.securitytracker.com/id/1034816",
+            "https://access.redhat.com/security/cve/CVE-2016-0751",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0751",
+            "https://github.com/advisories/GHSA-ffpv-c4hm-3x6v",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/9oLY_FCzvoc/w9oI9XxbFQAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/9oLY_FCzvoc",
+            "https://groups.google.com/forum/message/raw?msg=ruby-security-ann/9oLY_FCzvoc/5CDXbvpYEgAJ",
+            "https://marc.info/?l=oss-security\u0026m=145375035828624\u0026w=2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2016-0751"
+          ],
+          "PublishedDate": "2016-02-16T02:59:00Z",
+          "LastModifiedDate": "2019-08-08T15:43:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2016-2098",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 3.2.22.2, ~\u003e 4.2.5, \u003e= 4.2.5.2, ~\u003e 4.1.14, \u003e= 4.1.14.2",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-2098",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-actionview, rubygem-actionpack: code injection vulnerability in Action View",
+          "Description": "Action Pack in Ruby on Rails before 3.2.22.2, 4.x before 4.1.14.2, and 4.2.x before 4.2.5.2 allows remote attackers to execute arbitrary Ruby code by leveraging an application's unrestricted use of the render method.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 7.3
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V2Score": 7.5,
+              "V3Score": 7.3
+            },
+            "redhat": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "V2Score": 6.8
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2016-03/msg00057.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-03/msg00080.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-03/msg00083.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-03/msg00086.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00006.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00053.html",
+            "http://weblog.rubyonrails.org/2016/2/29/Rails-4-2-5-2-4-1-14-2-3-2-22-2-have-been-released/",
+            "http://www.debian.org/security/2016/dsa-3509",
+            "http://www.securityfocus.com/bid/83725",
+            "http://www.securitytracker.com/id/1035122",
+            "https://access.redhat.com/security/cve/CVE-2016-2098",
+            "https://github.com/advisories/GHSA-78rc-8c29-p45g",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/ly-IH-fxr_Q/WLoOhcMZIAAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/ly-IH-fxr_Q",
+            "https://groups.google.com/forum/message/raw?msg=rubyonrails-security/ly-IH-fxr_Q/WLoOhcMZIAAJ",
+            "https://nvd.nist.gov/vuln/detail/CVE-2016-2098",
+            "https://www.exploit-db.com/exploits/40086/"
+          ],
+          "PublishedDate": "2016-04-07T23:59:00Z",
+          "LastModifiedDate": "2019-08-08T15:43:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8164",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 5.2.4, \u003e= 5.2.4.3, \u003e= 6.0.3.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8164",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-actionpack: possible strong parameters bypass",
+          "Description": "A deserialization of untrusted data vulnerability exists in rails \u003c 5.2.4.3, rails \u003c 6.0.3.1 which can allow an attacker to supply information can be inadvertently leaked fromStrong Parameters.",
           "Severity": "HIGH",
           "CweIDs": [
             "CWE-502"
           ],
           "CVSS": {
             "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V3Score": 7.5
             },
             "nvd": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V3Score": 7.5
             }
           },
           "References": [
-            "https://access.redhat.com/security/cve/CVE-2022-42003",
-            "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=51020",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42003",
-            "https://github.com/FasterXML/jackson-databind/blob/2.13/release-notes/VERSION-2.x",
-            "https://github.com/FasterXML/jackson-databind/commit/d78d00ee7b5245b93103fef3187f70543d67ca33",
-            "https://github.com/FasterXML/jackson-databind/commit/d78d00ee7b5245b93103fef3187f70543d67ca33 (jackson-databind-2.14.0-rc1)",
-            "https://github.com/FasterXML/jackson-databind/issues/3590",
-            "https://github.com/advisories/GHSA-jjjh-jjxp-wpff",
-            "https://nvd.nist.gov/vuln/detail/CVE-2022-42003"
+            "http://lists.opensuse.org/opensuse-security-announce/2020-09/msg00089.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2020-09/msg00093.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2020-09/msg00107.html",
+            "https://access.redhat.com/security/cve/CVE-2020-8164",
+            "https://github.com/advisories/GHSA-8727-m6gj-mc37",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/actionpack/CVE-2020-8164.yml",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/f6ioe4sdpbY",
+            "https://groups.google.com/g/rubyonrails-security/c/f6ioe4sdpbY",
+            "https://hackerone.com/reports/292797",
+            "https://lists.debian.org/debian-lts-announce/2020/06/msg00022.html",
+            "https://lists.debian.org/debian-lts-announce/2020/07/msg00013.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8164",
+            "https://weblog.rubyonrails.org/2020/5/18/Rails-5-2-4-3-and-6-0-3-1-have-been-released",
+            "https://www.debian.org/security/2020/dsa-4766"
           ],
-          "PublishedDate": "2022-10-02T05:15:00Z",
-          "LastModifiedDate": "2022-10-18T18:00:00Z"
+          "PublishedDate": "2020-06-19T17:15:00Z",
+          "LastModifiedDate": "2022-05-24T16:44:00Z"
         },
         {
-          "VulnerabilityID": "CVE-2022-42004",
-          "PkgName": "com.fasterxml.jackson.core:jackson-databind",
-          "PkgPath": "opt/sonarqube/lib/sonar-application-9.7.0.61563.jar",
-          "InstalledVersion": "2.13.3",
-          "FixedVersion": "2.13.4",
-          "Layer": {
-            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
-            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
-          },
-          "SeveritySource": "ghsa",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42004",
+          "VulnerabilityID": "CVE-2021-22885",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 5.2.4.6, ~\u003e 5.2.6, ~\u003e 6.0.3, \u003e= 6.0.3.7, \u003e= 6.1.3.2",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-22885",
           "DataSource": {
-            "ID": "ghsa",
-            "Name": "GitHub Security Advisory Maven",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
           },
-          "Title": "jackson-databind: use of deeply nested arrays",
-          "Description": "In FasterXML jackson-databind before 2.13.4, resource exhaustion can occur because of a lack of a check in BeanDeserializer._deserializeFromArray to prevent use of deeply nested arrays. An application is vulnerable only with certain customized choices for deserialization.",
+          "Title": "rubygem-actionpack: Possible Information Disclosure / Unintended Method Execution in Action Pack",
+          "Description": "A possible information disclosure / unintended method execution vulnerability in Action Pack \u003e= 2.0.0 when using the `redirect_to` or `polymorphic_url`helper with untrusted user input.",
           "Severity": "HIGH",
           "CweIDs": [
-            "CWE-502"
+            "CWE-209"
           ],
           "CVSS": {
             "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V3Score": 7.5
             },
             "nvd": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V3Score": 7.5
             }
           },
           "References": [
-            "https://access.redhat.com/security/cve/CVE-2022-42004",
-            "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50490",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42004",
-            "https://github.com/FasterXML/jackson-databind/commit/063183589218fec19a9293ed2f17ec53ea80ba88",
-            "https://github.com/FasterXML/jackson-databind/commit/063183589218fec19a9293ed2f17ec53ea80ba88 (jackson-databind-2.13.4)",
-            "https://github.com/FasterXML/jackson-databind/issues/3582",
-            "https://github.com/advisories/GHSA-rgv9-q543-rqg4",
-            "https://nvd.nist.gov/vuln/detail/CVE-2022-42004"
+            "https://access.redhat.com/security/cve/CVE-2021-22885",
+            "https://github.com/advisories/GHSA-hjg4-8q5f-x6fm",
+            "https://github.com/rails/rails/releases/tag/v5.2.4.6",
+            "https://github.com/rails/rails/releases/tag/v5.2.6",
+            "https://github.com/rails/rails/releases/tag/v6.0.3.7",
+            "https://github.com/rails/rails/releases/tag/v6.1.3.2",
+            "https://groups.google.com/g/rubyonrails-security/c/NiQl-48cXYI",
+            "https://hackerone.com/reports/1106652",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-22885",
+            "https://security.netapp.com/advisory/ntap-20210805-0009/",
+            "https://www.debian.org/security/2021/dsa-4929"
           ],
-          "PublishedDate": "2022-10-02T05:15:00Z",
-          "LastModifiedDate": "2022-10-19T16:24:00Z"
+          "PublishedDate": "2021-05-27T12:15:00Z",
+          "LastModifiedDate": "2022-04-06T16:58:00Z"
         },
         {
-          "VulnerabilityID": "CVE-2021-37136",
-          "PkgName": "io.netty:netty-codec",
-          "PkgPath": "opt/sonarqube/elasticsearch/modules/transport-netty4/netty-codec-4.1.66.Final.jar",
-          "InstalledVersion": "4.1.66.Final",
-          "FixedVersion": "4.1.68.Final",
-          "Layer": {
-            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
-            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
-          },
-          "SeveritySource": "nvd",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-37136",
+          "VulnerabilityID": "CVE-2021-22904",
+          "PkgName": "actionpack",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 5.2.4.6, ~\u003e 5.2.6, ~\u003e 6.0.3, \u003e= 6.0.3.7, \u003e= 6.1.3.2",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-22904",
           "DataSource": {
-            "ID": "glad",
-            "Name": "GitLab Advisory Database Community",
-            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
           },
-          "Title": "netty-codec: Bzip2Decoder doesn't allow setting size restrictions for decompressed data",
-          "Description": "The Bzip2 decompression decoder function doesn't allow setting size restrictions on the decompressed output data (which affects the allocation size used during decompression). All users of Bzip2Decoder are affected. The malicious input can trigger an OOME and so a DoS attack",
+          "Title": "rails: Possible DoS Vulnerability in Action Controller Token Authentication",
+          "Description": "The actionpack ruby gem before 6.1.3.2, 6.0.3.7, 5.2.4.6, 5.2.6 suffers from a possible denial of service vulnerability in the Token Authentication logic in Action Controller due to a too permissive regular expression. Impacted code uses `authenticate_or_request_with_http_token` or `authenticate_with_http_token` for request authentication.",
           "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-400"
-          ],
           "CVSS": {
             "ghsa": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
@@ -278,113 +332,156 @@
             }
           },
           "References": [
-            "https://access.redhat.com/security/cve/CVE-2021-37136",
-            "https://github.com/advisories/GHSA-grg4-wf29-r9vv",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L294",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L305",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/Bzip2Decoder.java#L80",
-            "https://github.com/netty/netty/commit/41d3d61a61608f2223bb364955ab2045dd5e4020",
-            "https://github.com/netty/netty/security/advisories/GHSA-grg4-wf29-r9vv",
-            "https://lists.apache.org/thread.html/r06a145c9bd41a7344da242cef07977b24abe3349161ede948e30913d@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r5406eaf3b07577d233b9f07cfc8f26e28369e6bab5edfcab41f28abb@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r5e05eba32476c580412f9fbdfc9b8782d5b40558018ac4ac07192a04@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r75490c61c2cb7b6ae2c81238fd52ae13636c60435abcd732d41531a0@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/rd262f59b1586a108e320e5c966feeafbb1b8cdc96965debc7cc10b16@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/rfb2bf8597e53364ccab212fbcbb2a4e9f0a9e1429b1dc08023c6868e@%3Cdev.tinkerpop.apache.org%3E",
-            "https://nvd.nist.gov/vuln/detail/CVE-2021-37136",
-            "https://security.netapp.com/advisory/ntap-20220210-0012/",
-            "https://www.oracle.com/security-alerts/cpuapr2022.html",
-            "https://www.oracle.com/security-alerts/cpujan2022.html",
-            "https://www.oracle.com/security-alerts/cpujul2022.html"
+            "https://access.redhat.com/security/cve/CVE-2021-22904",
+            "https://discuss.rubyonrails.org/t/cve-2021-22904-possible-dos-vulnerability-in-action-controller-token-authentication/77869",
+            "https://github.com/advisories/GHSA-7wjx-3g7j-8584",
+            "https://github.com/rails/rails/releases/tag/v5.2.4.6",
+            "https://github.com/rails/rails/releases/tag/v5.2.6",
+            "https://github.com/rails/rails/releases/tag/v6.0.3.7",
+            "https://github.com/rails/rails/releases/tag/v6.1.3.2",
+            "https://groups.google.com/g/rubyonrails-security/c/Pf1TjkOBdyQ",
+            "https://hackerone.com/reports/1101125",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-22904",
+            "https://security.netapp.com/advisory/ntap-20210805-0009/"
           ],
-          "PublishedDate": "2021-10-19T15:15:00Z",
-          "LastModifiedDate": "2022-10-05T13:43:00Z"
+          "PublishedDate": "2021-06-11T16:15:00Z",
+          "LastModifiedDate": "2021-09-20T13:51:00Z"
         },
         {
-          "VulnerabilityID": "CVE-2021-37137",
-          "PkgName": "io.netty:netty-codec",
-          "PkgPath": "opt/sonarqube/elasticsearch/modules/transport-netty4/netty-codec-4.1.66.Final.jar",
-          "InstalledVersion": "4.1.66.Final",
-          "FixedVersion": "4.1.68.Final",
-          "Layer": {
-            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
-            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
-          },
-          "SeveritySource": "nvd",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-37137",
+          "VulnerabilityID": "CVE-2016-0752",
+          "PkgName": "actionview",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "\u003e= 5.0.0.beta1.1, ~\u003e 4.2.5, \u003e= 4.2.5.1, ~\u003e 4.1.14, \u003e= 4.1.14.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-0752",
           "DataSource": {
-            "ID": "glad",
-            "Name": "GitLab Advisory Database Community",
-            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
           },
-          "Title": "netty-codec: SnappyFrameDecoder doesn't restrict chunk length and may buffer skippable chunks in an unnecessary way",
-          "Description": "The Snappy frame decoder function doesn't restrict the chunk length which may lead to excessive memory usage. Beside this it also may buffer reserved skippable chunks until the whole chunk was received which may lead to excessive memory usage as well. This vulnerability can be triggered by supplying malicious input that decompresses to a very big size (via a network stream or a file) or by sending a huge skippable chunk.",
+          "Title": "rubygem-actionview, rubygem-actionpack: directory traversal flaw in Action View",
+          "Description": "Directory traversal vulnerability in Action View in Ruby on Rails before 3.2.22.1, 4.0.x and 4.1.x before 4.1.14.1, 4.2.x before 4.2.5.1, and 5.x before 5.0.0.beta1.1 allows remote attackers to read arbitrary files by leveraging an application's unrestricted use of the render method and providing a .. (dot dot) in a pathname.",
           "Severity": "HIGH",
           "CweIDs": [
-            "CWE-400"
+            "CWE-22"
           ],
           "CVSS": {
             "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V3Score": 7.5
             },
             "nvd": {
-              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
               "V2Score": 5,
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "V2Score": 6.8
             }
           },
           "References": [
-            "https://access.redhat.com/security/cve/CVE-2021-37137",
-            "https://github.com/advisories/GHSA-9vjp-v76f-g363",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L171",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L185",
-            "https://github.com/netty/netty/blob/4.1/codec/src/main/java/io/netty/handler/codec/compression/SnappyFrameDecoder.java#L79",
-            "https://github.com/netty/netty/commit/6da4956b31023ae967451e1d94ff51a746a9194f",
-            "https://github.com/netty/netty/security/advisories/GHSA-9vjp-v76f-g363",
-            "https://github.com/netty/netty/security/advisories/GHSA-grg4-wf29-r9vv",
-            "https://lists.apache.org/thread.html/r06a145c9bd41a7344da242cef07977b24abe3349161ede948e30913d@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r5406eaf3b07577d233b9f07cfc8f26e28369e6bab5edfcab41f28abb@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r5e05eba32476c580412f9fbdfc9b8782d5b40558018ac4ac07192a04@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/r75490c61c2cb7b6ae2c81238fd52ae13636c60435abcd732d41531a0@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/rd262f59b1586a108e320e5c966feeafbb1b8cdc96965debc7cc10b16@%3Ccommits.druid.apache.org%3E",
-            "https://lists.apache.org/thread.html/rfb2bf8597e53364ccab212fbcbb2a4e9f0a9e1429b1dc08023c6868e@%3Cdev.tinkerpop.apache.org%3E",
-            "https://nvd.nist.gov/vuln/detail/CVE-2021-37137",
-            "https://security.netapp.com/advisory/ntap-20220210-0012/",
-            "https://www.oracle.com/security-alerts/cpuapr2022.html",
-            "https://www.oracle.com/security-alerts/cpujan2022.html",
-            "https://www.oracle.com/security-alerts/cpujul2022.html"
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178044.html",
+            "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178069.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00053.html",
+            "http://lists.opensuse.org/opensuse-updates/2016-02/msg00034.html",
+            "http://lists.opensuse.org/opensuse-updates/2016-02/msg00043.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-0296.html",
+            "http://www.debian.org/security/2016/dsa-3464",
+            "http://www.openwall.com/lists/oss-security/2016/01/25/13",
+            "http://www.securityfocus.com/bid/81801",
+            "http://www.securitytracker.com/id/1034816",
+            "https://access.redhat.com/security/cve/CVE-2016-0752",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0752",
+            "https://github.com/advisories/GHSA-xrr4-p6fq-hjg7",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/335P1DcLG00/OfB9_LhbFQAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/335P1DcLG00",
+            "https://groups.google.com/forum/message/raw?msg=ruby-security-ann/335P1DcLG00/JXcBnTtZEgAJ",
+            "https://marc.info/?l=oss-security\u0026m=145375068928706\u0026w=2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2016-0752",
+            "https://nvisium.com/blog/2016/01/26/rails-dynamic-render-to-rce-cve-2016-0752/",
+            "https://www.exploit-db.com/exploits/40561/"
           ],
-          "PublishedDate": "2021-10-19T15:15:00Z",
-          "LastModifiedDate": "2022-10-05T17:58:00Z"
+          "PublishedDate": "2016-02-16T02:59:00Z",
+          "LastModifiedDate": "2019-08-08T15:43:00Z"
         },
         {
-          "VulnerabilityID": "CVE-2022-25857",
-          "PkgName": "org.yaml:snakeyaml",
-          "PkgPath": "opt/sonarqube/elasticsearch/lib/snakeyaml-1.26.jar",
-          "InstalledVersion": "1.26",
-          "FixedVersion": "1.31",
-          "Layer": {
-            "Digest": "sha256:a4ab47fdf3607bdd9cba7227b42012f282e06b692d98ed0024edcc00163f29fe",
-            "DiffID": "sha256:0476cda7dacf4c1f512e2d246fdaa0e772987c31c6012d7a105bd51383e5596c"
-          },
-          "SeveritySource": "nvd",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-25857",
+          "VulnerabilityID": "CVE-2019-5418",
+          "PkgName": "actionview",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 4.2.11, \u003e= 4.2.11.1, ~\u003e 5.0.7, \u003e= 5.0.7.2, ~\u003e 5.1.6, \u003e= 5.1.6.2, ~\u003e 5.2.2, \u003e= 5.2.2.1, \u003e= 6.0.0.beta3",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5418",
           "DataSource": {
-            "ID": "glad",
-            "Name": "GitLab Advisory Database Community",
-            "URL": "https://gitlab.com/gitlab-org/advisories-community"
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
           },
-          "Title": "snakeyaml: Denial of Service due to missing nested depth limitation for collections",
-          "Description": "The package org.yaml:snakeyaml from 0 and before 1.31 are vulnerable to Denial of Service (DoS) due missing to nested depth limitation for collections.",
+          "Title": "rubygem-actionpack: render file directory traversal in Action View",
+          "Description": "There is a File Content Disclosure vulnerability in Action View \u003c5.2.2.1, \u003c5.1.6.2, \u003c5.0.7.2, \u003c4.2.11.1 and v3 where specially crafted accept headers can cause contents of arbitrary files on the target system's filesystem to be exposed.",
+          "Severity": "HIGH",
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-05/msg00011.html",
+            "http://packetstormsecurity.com/files/152178/Rails-5.2.1-Arbitrary-File-Content-Disclosure.html",
+            "http://www.openwall.com/lists/oss-security/2019/03/22/1",
+            "https://access.redhat.com/errata/RHSA-2019:0796",
+            "https://access.redhat.com/errata/RHSA-2019:1147",
+            "https://access.redhat.com/errata/RHSA-2019:1149",
+            "https://access.redhat.com/errata/RHSA-2019:1289",
+            "https://access.redhat.com/security/cve/CVE-2019-5418",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5418",
+            "https://github.com/advisories/GHSA-86g5-2wh3-gc9j",
+            "https://github.com/mpgn/CVE-2019-5418",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/pFRKI96Sm8Q/IhpRq9D2CgAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/pFRKI96Sm8Q",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/zRNVOUhKHrg",
+            "https://lists.debian.org/debian-lts-announce/2019/03/msg00042.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Y43636TH4D6T46IC6N2RQVJTRFJAAYGA/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-5418",
+            "https://weblog.rubyonrails.org/2019/3/13/Rails-4-2-5-1-5-1-6-2-have-been-released/",
+            "https://www.exploit-db.com/exploits/46585/",
+            "https://www.openwall.com/lists/oss-security/2019/03/13/5"
+          ],
+          "PublishedDate": "2019-03-27T14:29:00Z",
+          "LastModifiedDate": "2020-10-16T19:02:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5419",
+          "PkgName": "actionview",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "\u003e= 6.0.0.beta3, ~\u003e 5.2.2, \u003e= 5.2.2.1, ~\u003e 5.1.6, \u003e= 5.1.6.2, ~\u003e 5.0.7, \u003e= 5.0.7.2, ~\u003e 4.2.11, \u003e= 4.2.11.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5419",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-actionpack: denial of service vulnerability in Action View",
+          "Description": "There is a possible denial of service vulnerability in Action View (Rails) \u003c5.2.2.1, \u003c5.1.6.2, \u003c5.0.7.2, \u003c4.2.11.1 where specially crafted accept headers can cause action view to consume 100% cpu and make the server unresponsive.",
           "Severity": "HIGH",
           "CweIDs": [
-            "CWE-400"
+            "CWE-770"
           ],
           "CVSS": {
             "ghsa": {
@@ -392,32 +489,681 @@
               "V3Score": 7.5
             },
             "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:C",
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 7.8,
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-05/msg00011.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00025.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00001.html",
+            "http://www.openwall.com/lists/oss-security/2019/03/22/1",
+            "https://access.redhat.com/errata/RHSA-2019:0796",
+            "https://access.redhat.com/errata/RHSA-2019:1147",
+            "https://access.redhat.com/errata/RHSA-2019:1149",
+            "https://access.redhat.com/errata/RHSA-2019:1289",
+            "https://access.redhat.com/security/cve/CVE-2019-5419",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5419",
+            "https://github.com/advisories/GHSA-m63j-wh5w-c252",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/GN7w9fFAQeI/0iQIiLP2CgAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/GN7w9fFAQeI",
+            "https://lists.debian.org/debian-lts-announce/2019/03/msg00042.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Y43636TH4D6T46IC6N2RQVJTRFJAAYGA/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-5419",
+            "https://weblog.rubyonrails.org/2019/3/13/Rails-4-2-5-1-5-1-6-2-have-been-released/",
+            "https://www.openwall.com/lists/oss-security/2019/03/13/4"
+          ],
+          "PublishedDate": "2019-03-27T14:29:00Z",
+          "LastModifiedDate": "2020-10-16T19:02:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8163",
+          "PkgName": "actionview",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "\u003e= 4.2.11.2",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8163",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-rails: potential remote code execution of user-provided local names",
+          "Description": "The is a code injection vulnerability in versions of Rails prior to 5.0.1 that wouldallow an attacker who controlled the `locals` argument of a `render` call to perform a RCE.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-94"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:S/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 6.5,
+              "V3Score": 8.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            }
+          },
+          "References": [
+            "http://packetstormsecurity.com/files/158604/Ruby-On-Rails-5.0.1-Remote-Code-Execution.html",
+            "https://access.redhat.com/security/cve/CVE-2020-8163",
+            "https://github.com/advisories/GHSA-cr3x-7m39-c6jq",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/actionview/CVE-2020-8163.yml",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/hWuKcHyoKh0",
+            "https://groups.google.com/g/rubyonrails-security/c/hWuKcHyoKh0",
+            "https://hackerone.com/reports/304805",
+            "https://lists.debian.org/debian-lts-announce/2020/07/msg00013.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8163",
+            "https://weblog.rubyonrails.org/2020/5/16/rails-4-2-11-3-has-been-released"
+          ],
+          "PublishedDate": "2020-07-02T19:15:00Z",
+          "LastModifiedDate": "2022-05-24T16:06:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-32224",
+          "PkgName": "activerecord",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 5.2.8, \u003e= 5.2.8.1, ~\u003e 6.0.5, \u003e= 6.0.5.1, ~\u003e 6.1.6, \u003e= 6.1.6.1, \u003e= 7.0.3.1",
+          "Layer": {},
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-32224",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "activerecord: Possible RCE escalation bug with Serialized Columns in Active Record",
+          "Description": "An insecure deserialization flaw was found in Active Record, which uses YAML.unsafe_load to convert the YAML data into Ruby objects. An attacker supplying crafted data to the database can perform remote code execution (RCE), resulting in complete system compromise.",
+          "Severity": "CRITICAL",
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+              "V3Score": 9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2022-32224",
+            "https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017",
+            "https://github.com/advisories/GHSA-3hhc-qp5v-9p2j",
+            "https://github.com/rails/rails/commit/611990f1a6c137c2d56b1ba06b27e5d2434dcd6a",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/activerecord/CVE-2022-32224.yml",
+            "https://groups.google.com/g/rubyonrails-security/c/MmFO3LYQE8U",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-32224"
+          ]
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8165",
+          "PkgName": "activesupport",
+          "InstalledVersion": "4.1.6",
+          "FixedVersion": "~\u003e 5.2.4, \u003e= 5.2.4.3, \u003e= 6.0.3.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8165",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-activesupport: potentially unintended unmarshalling of user-provided objects in MemCacheStore and RedisCacheStore",
+          "Description": "A deserialization of untrusted data vulnernerability exists in rails \u003c 5.2.4.3, rails \u003c 6.0.3.1 that can allow an attacker to unmarshal user-provided objects in MemCacheStore and RedisCacheStore potentially resulting in an RCE.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-502"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 9.8
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-10/msg00031.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2020-10/msg00034.html",
+            "https://access.redhat.com/security/cve/CVE-2020-8165",
+            "https://github.com/advisories/GHSA-2p68-f74v-9wc6",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/activesupport/CVE-2020-8165.yml",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/bv6fW4S0Y1c/KnkEqM7AAQAJ",
+            "https://groups.google.com/forum/#!topic/rubyonrails-security/bv6fW4S0Y1c",
+            "https://groups.google.com/g/rubyonrails-security/c/bv6fW4S0Y1c",
+            "https://hackerone.com/reports/413388",
+            "https://lists.debian.org/debian-lts-announce/2020/06/msg00022.html",
+            "https://lists.debian.org/debian-lts-announce/2020/07/msg00013.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8165",
+            "https://weblog.rubyonrails.org/2020/5/18/Rails-5-2-4-3-and-6-0-3-1-have-been-released/",
+            "https://www.debian.org/security/2020/dsa-4766"
+          ],
+          "PublishedDate": "2020-06-19T18:15:00Z",
+          "LastModifiedDate": "2022-05-24T16:45:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5421",
+          "PkgName": "devise",
+          "InstalledVersion": "3.3.0",
+          "FixedVersion": "\u003e= 4.6.0",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5421",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "Plataformatec Devise version 4.5.0 and earlier, using the lockable mod ...",
+          "Description": "Plataformatec Devise version 4.5.0 and earlier, using the lockable module contains a CWE-367 vulnerability in The `Devise::Models::Lockable` class, more specifically at the `#increment_failed_attempts` method. File location: lib/devise/models/lockable.rb that can result in Multiple concurrent requests can prevent an attacker from being blocked on brute force attacks. This attack appear to be exploitable via Network connectivity - brute force attacks. This vulnerability appears to have been fixed in 4.6.0 and later.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-307"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5421",
+            "https://github.com/advisories/GHSA-73rf-6mrf-759q",
+            "https://github.com/plataformatec/devise/issues/4981",
+            "https://github.com/plataformatec/devise/pull/4996",
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-5421"
+          ],
+          "PublishedDate": "2019-04-03T15:29:00Z",
+          "LastModifiedDate": "2020-10-16T19:17:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2014-10077",
+          "PkgName": "i18n",
+          "InstalledVersion": "0.6.11",
+          "FixedVersion": "\u003e= 0.8.0",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2014-10077",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-i18n: denial of service in Hash#slice in lib/i18n/core_ext/hash.rb",
+          "Description": "Hash#slice in lib/i18n/core_ext/hash.rb in the i18n gem before 0.8.0 for Ruby allows remote attackers to cause a denial of service (application crash) via a call in a situation where :some_key is present in keep_keys but not present in the hash.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2014-10077",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-10077",
+            "https://github.com/advisories/GHSA-34hf-g744-jw64",
+            "https://github.com/rubysec/ruby-advisory-db/pull/182/files",
+            "https://github.com/svenfuchs/i18n/pull/289",
+            "https://github.com/svenfuchs/i18n/releases/tag/v0.8.0",
+            "https://lists.debian.org/debian-lts-announce/2018/11/msg00021.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2014-10077"
+          ],
+          "PublishedDate": "2018-11-06T15:29:00Z",
+          "LastModifiedDate": "2018-12-13T20:30:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-10663",
+          "PkgName": "json",
+          "InstalledVersion": "1.8.1",
+          "FixedVersion": "\u003e= 2.3.0",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-10663",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-json: Unsafe object creation vulnerability in JSON",
+          "Description": "The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.4 through 2.4.9, 2.5 through 2.5.7, and 2.6 through 2.6.5, has an Unsafe Object Creation Vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 7.3
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-05/msg00004.html",
+            "http://seclists.org/fulldisclosure/2020/Dec/32",
+            "https://access.redhat.com/security/cve/CVE-2020-10663",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-10663",
+            "https://github.com/advisories/GHSA-jphg-qwrw-7w9g",
+            "https://github.com/flori/json/blob/master/CHANGES.md#2019-12-11-230",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/json/CVE-2020-10663.yml",
+            "https://groups.google.com/forum/#!topic/ruby-security-ann/ermX1eQqqKA",
+            "https://hackerone.com/reports/706934",
+            "https://linux.oracle.com/cve/CVE-2020-10663.html",
+            "https://linux.oracle.com/errata/ELSA-2021-2588.html",
+            "https://lists.apache.org/thread.html/r37c0e1807da7ff2bdd028bbe296465a6bbb99e2320dbe661d5d8b33b@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/r3b04f4e99a19613f88ae088aa18cd271231a3c79dfff8f5efa8cda61@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/r5f17bfca1d6e7f4b33ae978725b2fd62a9f1b3111696eafa9add802d@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/r8d2e174230f6d26e16c007546e804c343f1f68956f526daaafa4aaae@%3Cdev.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rb023d54a46da1ac0d8969097f5fecc79636b07d3b80db7b818a5c55c@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rb2b981912446a74e14fe6076c4b7c7d8502727ea0718e6a65a9b1be5@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rd9b9cc843f5cf5b532bdad9e87a817967efcf52b917e8c43b6df4cc7@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rec8bb4d637b04575da41cfae49118e108e95d43bfac39b7b698ee4db@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/ree3abcd33c06ee95ab59faa1751198a1186d8941ddc2c2562c12966c@%3Cissues.zookeeper.apache.org%3E",
+            "https://lists.debian.org/debian-lts-announce/2020/04/msg00030.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/7QL6MJD2BO4IRJ5CJFNMCDYMQQFT24BJ/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/F4TNVTT66VPRMX5UZYSDGSVRXKKDDDU5/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NK2PBXWMFRUD7U7Q7LHV4KYLYID77RI4/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-10663",
+            "https://security.netapp.com/advisory/ntap-20210129-0003/",
+            "https://support.apple.com/kb/HT211931",
+            "https://ubuntu.com/security/notices/USN-4882-1",
+            "https://www.debian.org/security/2020/dsa-4721",
+            "https://www.ruby-lang.org/en/news/2020/03/19/json-dos-cve-2020-10663",
+            "https://www.ruby-lang.org/en/news/2020/03/19/json-dos-cve-2020-10663/"
+          ],
+          "PublishedDate": "2020-04-28T21:15:00Z",
+          "LastModifiedDate": "2022-04-18T15:21:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8161",
+          "PkgName": "rack",
+          "InstalledVersion": "1.5.2",
+          "FixedVersion": "~\u003e 2.1.3, \u003e= 2.2.0",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8161",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-rack: directory traversal in Rack::Directory",
+          "Description": "A directory traversal vulnerability exists in rack \u003c 2.2.0 that allows an attacker perform directory traversal vulnerability in the Rack::Directory app that is bundled with Rack which could result in information disclosure.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
+              "V3Score": 8.6
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
+              "V2Score": 5,
+              "V3Score": 8.6
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2020-8161",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-8161",
+            "https://github.com/advisories/GHSA-5f9h-9pjv-v6j7",
+            "https://github.com/rack/rack/commit/dddb7ad18ed79ca6ab06ccc417a169fde451246e",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/rack/CVE-2020-8161.yml",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/IOO1vNZTzPA/Ylzi1UYLAAAJ",
+            "https://groups.google.com/forum/#!topic/ruby-security-ann/T4ZIsfRf2eA",
+            "https://groups.google.com/g/rubyonrails-security/c/IOO1vNZTzPA",
+            "https://hackerone.com/reports/434404",
+            "https://lists.debian.org/debian-lts-announce/2020/07/msg00006.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8161",
+            "https://ubuntu.com/security/notices/USN-4561-1",
+            "https://ubuntu.com/security/notices/USN-4561-2",
+            "https://usn.ubuntu.com/4561-1/"
+          ],
+          "PublishedDate": "2020-07-02T19:15:00Z",
+          "LastModifiedDate": "2022-05-24T15:56:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8184",
+          "PkgName": "rack",
+          "InstalledVersion": "1.5.2",
+          "FixedVersion": "~\u003e 2.1.4, \u003e= 2.2.3",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8184",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-rack: percent-encoded cookies can be used to overwrite existing prefixed cookie names",
+          "Description": "A reliance on cookies without validation/integrity check security vulnerability exists in rack \u003c 2.2.3, rack \u003c 2.1.4 that makes it is possible for an attacker to forge a secure or host-only cookie prefix.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
               "V3Score": 7.5
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2022:6820",
-            "https://access.redhat.com/hydra/rest/securitydata/cve/CVE-2022-25857.json",
-            "https://access.redhat.com/security/cve/CVE-2022-25857",
-            "https://bitbucket.org/snakeyaml/snakeyaml/commits/fc300780da21f4bb92c148bc90257201220cf174",
-            "https://bitbucket.org/snakeyaml/snakeyaml/issues/525",
-            "https://bugzilla.redhat.com/2126789",
-            "https://errata.almalinux.org/8/ALSA-2022-6820.html",
-            "https://github.com/advisories/GHSA-3mc7-4q67-w48m",
-            "https://github.com/snakeyaml/snakeyaml/commit/fc300780da21f4bb92c148bc90257201220cf174",
-            "https://linux.oracle.com/cve/CVE-2022-25857.html",
-            "https://linux.oracle.com/errata/ELSA-2022-6820.html",
-            "https://lists.debian.org/debian-lts-announce/2022/10/msg00001.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2022-25857",
-            "https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-2806360"
+            "https://access.redhat.com/security/cve/CVE-2020-8184",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-8184",
+            "https://github.com/advisories/GHSA-j6w9-fv6q-3q52",
+            "https://github.com/rack/rack/commit/1f5763de6a9fe515ff84992b343d63c88104654c",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/rack/CVE-2020-8184.yml",
+            "https://groups.google.com/forum/#!msg/rubyonrails-security/OWtmozPH9Ak/4m00yHPCBAAJ",
+            "https://groups.google.com/g/rubyonrails-security/c/OWtmozPH9Ak",
+            "https://hackerone.com/reports/895727",
+            "https://lists.debian.org/debian-lts-announce/2020/07/msg00006.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8184",
+            "https://ubuntu.com/security/notices/USN-4561-1",
+            "https://ubuntu.com/security/notices/USN-4561-2",
+            "https://usn.ubuntu.com/4561-1/"
           ],
-          "PublishedDate": "2022-08-30T05:15:00Z",
-          "LastModifiedDate": "2022-10-06T15:30:00Z"
+          "PublishedDate": "2020-06-19T17:15:00Z",
+          "LastModifiedDate": "2022-05-24T15:57:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-30123",
+          "PkgName": "rack",
+          "InstalledVersion": "1.5.2",
+          "FixedVersion": "~\u003e 2.0.9, \u003e= 2.0.9.1, ~\u003e 2.1.4, \u003e= 2.1.4.1, \u003e= 2.2.3.1",
+          "Layer": {},
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-30123",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-rack: crafted requests can cause shell escape sequences",
+          "Description": "A flaw was found in ruby gem-rack. This flaw allows a malicious actor to craft requests that can cause shell escape sequences to be written to the terminal via rack's `Lint` middleware and `CommonLogger` middleware. This issue can leverage these escape sequences to execute commands in the victim's terminal.",
+          "Severity": "HIGH",
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2022-30123",
+            "https://github.com/advisories/GHSA-wq4h-7r42-5hrr",
+            "https://github.com/rack/rack/commit/b426cc224908ec6ed6eb8729325392b048215d88",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/rack/CVE-2022-30123.yml",
+            "https://groups.google.com/g/ruby-security-ann/c/LWB10kWzag8"
+          ]
+        },
+        {
+          "VulnerabilityID": "CVE-2020-8130",
+          "PkgName": "rake",
+          "InstalledVersion": "10.3.2",
+          "FixedVersion": "\u003e= 12.3.3",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-8130",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rake: OS Command Injection via egrep in Rake::FileList",
+          "Description": "There is an OS command injection vulnerability in Ruby Rake \u003c 12.3.3 in Rake::FileList when supplying a filename that begins with the pipe character `|`.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-78"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:L/AC:M/Au:N/C:C/I:C/A:C",
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 6.9,
+              "V3Score": 6.4
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 6.4
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-03/msg00041.html",
+            "https://access.redhat.com/security/cve/CVE-2020-8130",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-8130",
+            "https://github.com/advisories/GHSA-jppv-gw3r-w3q8",
+            "https://github.com/ruby/rake/commit/5b8f8fc41a5d7d7d6a5d767e48464c60884d3aee",
+            "https://hackerone.com/reports/651518",
+            "https://lists.debian.org/debian-lts-announce/2020/02/msg00026.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/523CLQ62VRN3VVC52KMPTROCCKY4Z36B/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VXMX4ARNX2JLRJMSH4N3J3UBMUT5CI44/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8130",
+            "https://ubuntu.com/security/notices/USN-4295-1",
+            "https://usn.ubuntu.com/4295-1/"
+          ],
+          "PublishedDate": "2020-02-24T15:15:00Z",
+          "LastModifiedDate": "2020-06-30T14:00:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-31799",
+          "PkgName": "rdoc",
+          "InstalledVersion": "4.1.2",
+          "FixedVersion": "~\u003e 6.1.2.1, ~\u003e 6.2.1.1, \u003e= 6.3.1",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-31799",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-rdoc: Command injection vulnerability in RDoc",
+          "Description": "In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 3.0.1, it is possible to execute arbitrary code via | and tags in a filename.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-77"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7
+            },
+            "nvd": {
+              "V2Vector": "AV:L/AC:M/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 4.4,
+              "V3Score": 7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2022:0672",
+            "https://access.redhat.com/security/cve/CVE-2021-31799",
+            "https://bugzilla.redhat.com/1980126",
+            "https://bugzilla.redhat.com/1980128",
+            "https://bugzilla.redhat.com/1980132",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-31799",
+            "https://errata.almalinux.org/8/ALSA-2022-0672.html",
+            "https://github.com/advisories/GHSA-ggxm-pgc9-g7fp",
+            "https://github.com/ruby/rdoc/commit/a7f5d6ab88632b3b482fe10611382ff73d14eed7",
+            "https://github.com/ruby/ruby/commit/483f303d02e768b69e476e0b9be4ab2f26389522 (2.7)",
+            "https://github.com/ruby/ruby/commit/b1c73f239fe9af97de837331849f55d67c27561e (master)",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/rdoc/CVE-2021-31799.yml",
+            "https://linux.oracle.com/cve/CVE-2021-31799.html",
+            "https://linux.oracle.com/errata/ELSA-2022-0672.html",
+            "https://lists.debian.org/debian-lts-announce/2021/10/msg00009.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-31799",
+            "https://security-tracker.debian.org/tracker/CVE-2021-31799",
+            "https://security.netapp.com/advisory/ntap-20210902-0004/",
+            "https://ubuntu.com/security/notices/USN-5020-1",
+            "https://www.oracle.com/security-alerts/cpuapr2022.html",
+            "https://www.ruby-lang.org/en/news/2021/05/02/os-command-injection-in-rdoc/"
+          ],
+          "PublishedDate": "2021-07-30T14:15:00Z",
+          "LastModifiedDate": "2022-05-10T18:02:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-3760",
+          "PkgName": "sprockets",
+          "InstalledVersion": "2.11.0",
+          "FixedVersion": "\u003e= 2.12.5, \u003c 3.0.0, \u003e= 3.7.2, \u003c 4.0.0, \u003e= 4.0.0.beta8",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-3760",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-sprockets: Path traversal in forbidden_request?() can allow remote attackers to read arbitrary files",
+          "Description": "There is an information leak vulnerability in Sprockets. Versions Affected: 4.0.0.beta7 and lower, 3.7.1 and lower, 2.12.4 and lower. Specially crafted requests can be used to access files that exists on the filesystem that is outside an application's root directory, when the Sprockets server is used in production. All users running an affected release should either upgrade or use one of the work arounds immediately.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-200"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2018/06/19/2",
+            "https://access.redhat.com/errata/RHSA-2018:2244",
+            "https://access.redhat.com/errata/RHSA-2018:2245",
+            "https://access.redhat.com/errata/RHSA-2018:2561",
+            "https://access.redhat.com/errata/RHSA-2018:2745",
+            "https://access.redhat.com/security/cve/CVE-2018-3760",
+            "https://blog.heroku.com/rails-asset-pipeline-vulnerability",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-3760",
+            "https://github.com/advisories/GHSA-pr3h-jjhj-573x",
+            "https://github.com/rails/sprockets/commit/18b8a7f07a50c245e9aee7854ecdbe606bbd8bb5",
+            "https://github.com/rails/sprockets/commit/9c34fa05900b968d74f08ccf40917848a7be9441",
+            "https://github.com/rails/sprockets/commit/c09131cf5b2c479263939c8582e22b98ed616c5f",
+            "https://github.com/rails/sprockets/commit/c09131cf5b2c479263939c8582e22b98ed616c5fhttps://github.com/rails/sprockets/commit/9c34fa05900b968d74f08ccf40917848a7be9441https://github.com/rails/sprockets/commit/18b8a7f07a50c245e9aee7854ecdbe606bbd8bb5",
+            "https://groups.google.com/d/msg/rubyonrails-security/ft_J--l55fM/7roDfQ50BwAJ",
+            "https://groups.google.com/forum/#!topic/ruby-security-ann/2S9Pwz2i16k",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-3760",
+            "https://www.debian.org/security/2018/dsa-4242"
+          ],
+          "PublishedDate": "2018-06-26T19:29:00Z",
+          "LastModifiedDate": "2019-10-09T23:40:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-31163",
+          "PkgName": "tzinfo",
+          "InstalledVersion": "1.2.2",
+          "FixedVersion": "~\u003e 0.3.61, \u003e= 1.2.10",
+          "Layer": {},
+          "SeveritySource": "ruby-advisory-db",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31163",
+          "DataSource": {
+            "ID": "ruby-advisory-db",
+            "Name": "Ruby Advisory Database",
+            "URL": "https://github.com/rubysec/ruby-advisory-db"
+          },
+          "Title": "rubygem-tzinfo: arbitrary code execution",
+          "Description": "TZInfo is a Ruby library that provides access to time zone data and allows times to be converted using time zone rules. Versions prior to 0.36.1, as well as those prior to 1.2.10 when used with the Ruby data source tzinfo-data, are vulnerable to relative path traversal. With the Ruby data source, time zones are defined in Ruby files. There is one file per time zone. Time zone files are loaded with `require` on demand. In the affected versions, `TZInfo::Timezone.get` fails to validate time zone identifiers correctly, allowing a new line character within the identifier. With Ruby version 1.9.3 and later, `TZInfo::Timezone.get` can be made to load unintended files with `require`, executing them within the Ruby process. Versions 0.3.61 and 1.2.10 include fixes to correctly validate time zone identifiers. Versions 2.0.0 and later are not vulnerable. Version 0.3.61 can still load arbitrary files from the Ruby load path if their name follows the rules for a valid time zone identifier and the file has a prefix of `tzinfo/definition` within a directory in the load path. Applications should ensure that untrusted files are not placed in a directory on the load path. As a workaround, the time zone identifier can be validated before passing to `TZInfo::Timezone.get` by ensuring it matches the regular expression `\\A[A-Za-z0-9+\\-_]+(?:\\/[A-Za-z0-9+\\-_]+)*\\z`.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22",
+            "CWE-23"
+          ],
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2022-31163",
+            "https://github.com/advisories/GHSA-5cm2-9h8c-rvfx",
+            "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/tzinfo/CVE-2022-31163.yml",
+            "https://github.com/tzinfo/tzinfo/commit/9905ca93abf7bf3e387bd592406e403cd18334c7",
+            "https://github.com/tzinfo/tzinfo/commit/9eddbb5c0e682736f61d0dd803b6031a5db9eadf",
+            "https://github.com/tzinfo/tzinfo/commit/ca29f349856d62cb2b2edb3257d9ddd2f97b3c27",
+            "https://github.com/tzinfo/tzinfo/releases/tag/v0.3.61",
+            "https://github.com/tzinfo/tzinfo/releases/tag/v1.2.10",
+            "https://github.com/tzinfo/tzinfo/security/advisories/GHSA-5cm2-9h8c-rvfx",
+            "https://lists.debian.org/debian-lts-announce/2022/08/msg00009.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31163"
+          ],
+          "PublishedDate": "2022-07-22T04:15:00Z",
+          "LastModifiedDate": "2022-10-26T19:00:00Z"
         }
       ]
     }
