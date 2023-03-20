@@ -1,12 +1,13 @@
 {
-  "name": "trivy-to-sonarqube",
-  "version": "1.1.1",
-  "description": "Generates a report for Sonarqube (generic issue import format) based on report trivy.",
-  "homepage": "https://github.com/Blynskyniki/trivy-to-sonarqube#readme",
+  "name": "sonarqube-report-generation",
+  "version": "1.0.2",
+
+  "description": "Generates a report for Sonarqube (generic issue import format) based on report trivy and semgrep.",
+  "homepage": "https://github.com/swathi1102/sonarqube-report-generation#readme",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "trivy-to-sonarqube": "./dist/bin/index.js"
+    "sonarqube-report-generation": "./dist/bin/index.js"
   },
   "scripts": {
     "prepublish": " npm run build && chmod +x dist/bin/index.js    ",
@@ -16,7 +17,7 @@
     "testRun": "ts-node src/bin/index.ts $1"
   },
   "devDependencies": {
-    "@types/node": "^15.0.1",
+    "@types/node": "^15.14.9",
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
@@ -27,7 +28,13 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
-  "keywords": ["trivy","sonarqube","report","generic issue"],
+  "keywords": [
+    "trivy",
+    "semgrep",
+    "sonarqube",
+    "report",
+    "generic issue"
+  ],
   "author": "BlynskyNiki <blynskyniki@gmail.com>",
   "license": "MIT",
   "dependencies": {
